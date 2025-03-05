@@ -3,6 +3,7 @@ from collections import Counter
 from PIL import Image
 import math
 
+
 class HuffmanNode:
     def __init__(self, symbol=None, weight=0, word=None, left=None, right=None):
         self.symbol = symbol
@@ -14,6 +15,7 @@ class HuffmanNode:
     def __lt__(self, other):
         return self.weight < other.weight
 
+
 def build_huffman_tree(frequencies):
     heap = [HuffmanNode(sym, freq) for sym, freq in frequencies.items()]
     heapq.heapify(heap)
@@ -24,6 +26,7 @@ def build_huffman_tree(frequencies):
         heapq.heappush(heap, merged)
     return heap[0]
 
+
 def build_codes(node, code="", code_map={}):
     if node.symbol is not None:
         code_map[node.symbol] = code
@@ -32,12 +35,15 @@ def build_codes(node, code="", code_map={}):
         build_codes(node.right, code + "1", code_map)
     return code_map
 
+
 def huffman_encode(data):
     # Calculate frequency of each symbol in the data
     frequencies = Counter(data)
 
     # Create a priority queue to hold the nodes
-    priority_queue = [HuffmanNode(symbol, weight) for symbol, weight in frequencies.items()]
+    priority_queue = [
+        HuffmanNode(symbol, weight) for symbol, weight in frequencies.items()
+    ]
     heapq.heapify(priority_queue)
 
     steps = []
@@ -65,16 +71,17 @@ def huffman_encode(data):
     huffman_codes = build_codes(huffman_tree)
 
     # Encode the data
-    encoded_data = ''.join(huffman_codes[symbol] for symbol in data)
+    encoded_data = "".join(huffman_codes[symbol] for symbol in data)
     print(f"Encoded data length: {len(encoded_data)}")  # Debugging information
 
     return huffman_codes, huffman_tree, frequencies, steps, encoded_data
+
 
 def huffman_decode(encoded_data, huffman_tree, image_size):
     decoded_pixels = []
     node = huffman_tree
     for bit in encoded_data:
-        if bit == '0':
+        if bit == "0":
             node = node.left
         else:
             node = node.right
@@ -88,19 +95,24 @@ def huffman_decode(encoded_data, huffman_tree, image_size):
     if decoded_size != expected_size:
         print(f"Expected size: {expected_size}, Decoded size: {decoded_size}")
         print(f"Encoded data length: {len(encoded_data)}")
-        print(f"Decoded pixels: {decoded_pixels[:100]}")  # Print first 100 decoded pixels for debugging
-        print(f"Decoded pixels (last 100): {decoded_pixels[-100:]}")  # Print last 100 decoded pixels for debugging
+        print(
+            f"Decoded pixels: {decoded_pixels[:100]}"
+        )  # Print first 100 decoded pixels for debugging
+        print(
+            f"Decoded pixels (last 100): {decoded_pixels[-100:]}"
+        )  # Print last 100 decoded pixels for debugging
         raise ValueError("Decoded data does not match the expected image size")
 
-    decoded_image = Image.new('L', image_size)
+    decoded_image = Image.new("L", image_size)
     decoded_image.putdata(decoded_pixels)
     return decoded_image
+
 
 def tuple_huffman_decode(encoded_data, huffman_tree, image_size):
     decoded_pixels = []
     node = huffman_tree
     for bit in encoded_data:
-        if bit == '0':
+        if bit == "0":
             node = node.left
         else:
             node = node.right
@@ -114,11 +126,16 @@ def tuple_huffman_decode(encoded_data, huffman_tree, image_size):
     if decoded_size != expected_size:
         print(f"Expected size: {expected_size}, Decoded size: {decoded_size}")
         print(f"Encoded data length: {len(encoded_data)}")
-        print(f"Decoded pixels: {decoded_pixels[:100]}")  # Print first 100 decoded pixels for debugging
-        print(f"Decoded pixels (last 100): {decoded_pixels[-100:]}")  # Print last 100 decoded pixels for debugging
+        print(
+            f"Decoded pixels: {decoded_pixels[:100]}"
+        )  # Print first 100 decoded pixels for debugging
+        print(
+            f"Decoded pixels (last 100): {decoded_pixels[-100:]}"
+        )  # Print last 100 decoded pixels for debugging
         raise ValueError("Decoded data does not match the expected image size")
 
     return decoded_pixels
+
 
 def calculate_entropy(frequencies, total_symbols):
     entropy = 0
@@ -128,6 +145,7 @@ def calculate_entropy(frequencies, total_symbols):
         entropy += entropy_contribution
     return entropy
 
+
 def calculate_average_length(code_map, frequencies, total_symbols):
     avg_length = 0
     for symbol, code in code_map.items():
@@ -136,6 +154,7 @@ def calculate_average_length(code_map, frequencies, total_symbols):
             length_contribution = prob * len(code)
             avg_length += length_contribution
     return avg_length
+
 
 def calculate_efficiency(frequencies, code_map):
     total_symbols = sum(frequencies.values())

@@ -1,5 +1,0 @@
-Green channel:
-Average length of the encoded symbols: 4.4000
-Entropy of the source: 4.5007
-Huffman's coding efficiency: 1.0229
-Longest encoded word: 111101 (length: 6)

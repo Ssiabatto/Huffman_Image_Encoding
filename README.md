@@ -1,6 +1,6 @@
 # Huffman RGB Project
 
-This project implements Huffman coding to encode and decode the RGB channels of an image separately. It visualizes each channel and the corresponding Huffman trees built during the encoding process. The main goal is to demonstrate the efficiency of Huffman coding in image compression and restoration.
+This project implements Huffman coding to encode and decode the RGB channels of an image separately, as well as encoding and decoding the image as tuples. It visualizes each channel and the corresponding Huffman trees built during the encoding process. The main goal is to demonstrate the efficiency of Huffman coding in image compression and restoration.
 
 ## Project Structure
 
@@ -19,7 +19,7 @@ huffman_rgb_project
 
 1. Clone the repository:
    ```
-   git clone <repository-url>
+   git clone <https://github.com/Ssiabatto/Huffman_Image_Encoding.git>
    cd huffman_rgb_project
    ```
 
@@ -40,7 +40,8 @@ huffman_rgb_project
 
 ## Functionality
 
-- **Encoding and Decoding**: The application encodes each RGB channel of the image using Huffman coding and decodes them back to restore the original image.
+- **Encoding and Decoding RGB Channels**: The application encodes each RGB channel of the image using Huffman coding and decodes them back to restore the original image.
+- **Encoding and Decoding Tuples**: The application also supports encoding and decoding tuples using Huffman coding.
 - **Visualization**: It visualizes the individual RGB channels and the corresponding Huffman trees, providing insights into the encoding process.
 - **Image Processing**: Utility functions are included to handle image splitting and merging.
 
