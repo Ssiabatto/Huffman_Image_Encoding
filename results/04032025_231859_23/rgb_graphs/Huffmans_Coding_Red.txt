@@ -1,0 +1,5 @@
+Red channel:
+Average length of the encoded symbols: 6.2867
+Entropy of the source: 6.2663
+Huffman's coding efficiency: 0.9968
+Longest encoded word: 11011101 (length: 8)

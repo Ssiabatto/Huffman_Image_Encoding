@@ -1,0 +1,5 @@
+Blue channel:
+Average length of the encoded symbols: 4.4857
+Entropy of the source: 4.4576
+Huffman's coding efficiency: 0.9937
+Longest encoded word: 11101 (length: 5)
